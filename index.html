@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                margin-top: 2%;
+                width: 35%;
+                text-align: center;
+            }
+            #delete_btn {
+                background-color: red;
+                color: white;
+                padding: 2%;
+                border: none;
+                outline: none;
+            }
+        </style>
+    </head>
+    <body>
+
+        Name: <input type="text" id="name">
+        Department: <input type="text" id="department">
+        ID Number: <input type="text" id="id_number">
+        <button id="btn">Submit</button>
+
+        <table id="table">
+            <tr>
+                <th>Name</th>
+                <th>Department</th>
+                <th>ID Number</th>
+                <th>Action</th>
+            </tr>
+        </table>
+
+        <script>
+            let name = document.getElementById('name'),
+                department = document.getElementById('department'),
+                id_number = document.getElementById('id_number'),
+                table = document.getElementById('table'),
+                btn = document.getElementById('btn')
+            
+            btn.addEventListener('click', () => {
+                const tr = document.createElement('tr')
+                tr.innerHTML = `<td>${name.value}</td>
+                                <td>${department.value}</td>
+                                <td>${id_number.value}</td>
+                                <td><button id="delete_btn">Delete</button></td>
+                               
+                `
+                table.appendChild(tr)
+            name.value = ""
+            department.value = ""
+            id_number.value = ""
+            })
+        </script>
+
+    </body>
+</html>
