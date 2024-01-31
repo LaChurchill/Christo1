@@ -35,14 +35,17 @@
                 <th>ID Number</th>
                 <th>Action</th>
             </tr>
+            <tbody id="tbody">
+            </tbody>
         </table>
 
         <script>
             let name = document.getElementById('name'),
                 department = document.getElementById('department'),
                 id_number = document.getElementById('id_number'),
-                table = document.getElementById('table'),
+                tbody = document.getElementById('tbody'),
                 btn = document.getElementById('btn')
+           
             
             btn.addEventListener('click', () => {
                 const tr = document.createElement('tr')
@@ -52,10 +55,16 @@
                                 <td><button id="delete_btn">Delete</button></td>
                                
                 `
-                table.appendChild(tr)
+                tbody.appendChild(tr)
             name.value = ""
             department.value = ""
             id_number.value = ""
+            let delete_btn = document.getElementById("delete_btn")
+            delete_btn.addEventListener("click", function() {
+                let btn = this.parentElement
+                let parent = btn.parentElement
+                tbody.removeChild(parent)  
+            })
             })
         </script>
 
