@@ -5,27 +5,27 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
         <style>
-            table, th, td {
-                border: 1px solid black;
-                border-collapse: collapse;
-                margin-top: 2%;
-                width: 35%;
-                text-align: center;
-            }
-            #delete_btn {
-                background-color: red;
-                color: white;
-                padding: 2%;
-                border: none;
-                outline: none;
-            }
-        </style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin-top: 2%;
+            width: 35%;
+            text-align: center;
+        }
+        .delete_btn {
+            background-color: red;
+            color: white;
+            padding: 2%;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
     </head>
     <body>
 
         Name: <input type="text" id="name">
         Department: <input type="text" id="department">
-        ID Number: <input type="text" id="id_number">
         <button id="btn">Submit</button>
 
         <table id="table">
@@ -40,33 +40,31 @@
         </table>
 
         <script>
-            let name = document.getElementById('name'),
-                department = document.getElementById('department'),
-                id_number = document.getElementById('id_number'),
-                tbody = document.getElementById('tbody'),
-                btn = document.getElementById('btn')
-           
-            
-            btn.addEventListener('click', () => {
-                const tr = document.createElement('tr')
-                tr.innerHTML = `<td>${name.value}</td>
-                                <td>${department.value}</td>
-                                <td>${id_number.value}</td>
-                                <td><button id="delete_btn">Delete</button></td>
-                               
-                `
-                tbody.appendChild(tr)
-            name.value = ""
-            department.value = ""
-            id_number.value = ""
-            let delete_btn = document.getElementById("delete_btn")
-            delete_btn.addEventListener("click", function() {
-                let btn = this.parentElement
-                let parent = btn.parentElement
-                tbody.removeChild(parent)  
-            })
-            })
-        </script>
+    let nameInput = document.getElementById('name'),
+        departmentInput = document.getElementById('department'),
+        tbody = document.getElementById('tbody'),
+        btn = document.getElementById('btn');
+
+    let idCounter = 1;
+
+    btn.addEventListener('click', () => {
+        const tr = document.createElement('tr');
+        const uniqueId = `id_${idCounter++}`;
+        
+        tr.innerHTML = `<td>${nameInput.value}</td>
+                        <td>${departmentInput.value}</td>
+                        <td>${uniqueId}</td>
+                        <td><button class="delete_btn" onclick="deleteRow(this)">Delete</button></td>`;
+        tbody.appendChild(tr);
+        nameInput.value = "";
+        departmentInput.value = "";
+    });
+
+    function deleteRow(button) {
+        const row = button.closest('tr');
+        row.remove();
+    }
+</script>
 
     </body>
 </html>
