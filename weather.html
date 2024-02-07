@@ -7,19 +7,25 @@
     </head>
     <body>
 
+        <input type="text" id="city">
+        <button onclick="getWeatherData()">Get Data</button>
         <h3 id="location"></h3>
         <p id="latlon"></p>
 
         <script>
-            const apiKey = "voVLbodIcomHIuWq5gKCKmVjXdgSA7Ac"
-        fetch(`https://api.tomorrow.io/v4/weather/realtime?location=akowonjo&apikey=${apiKey}`)
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            document.getElementById("location").innerHTML = data.location.name
-            document.getElementById("latlon").innerHTML += "<b>Lat:</b> "+ data.location.lat + "<br>"
-            document.getElementById("latlon").innerHTML +="<b>Lon:</b> "+ data.location.lon
-        })
+
+            function getWeatherData() {
+                let city = document.getElementById("city").value;
+                const apiKey = "voVLbodIcomHIuWq5gKCKmVjXdgSA7Ac"
+                fetch(`https://api.tomorrow.io/v4/weather/realtime?location=${city}&apikey=${apiKey}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    document.getElementById("location").innerHTML = data.location.name
+                    document.getElementById("latlon").innerHTML += "<b>Lat:</b> "+ data.location.lat + "<br>"
+                    document.getElementById("latlon").innerHTML +="<b>Lon:</b> "+ data.location.lon
+                })
+            }
     </script>
     </body>
 </html>
