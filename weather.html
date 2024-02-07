@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+
+        <h3 id="location"></h3>
+        <p id="latlon"></p>
+
+        <script>
+        fetch("https://api.tomorrow.io/v4/weather/realtime?location=akowonjo&apikey=voVLbodIcomHIuWq5gKCKmVjXdgSA7Ac")
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            document.getElementById("location").innerHTML = data.location.name
+            document.getElementById("latlon").innerHTML += "<b>Lat:</b> "+ data.location.lat + "<br>"
+            document.getElementById("latlon").innerHTML +="<b>Lon:</b> "+ data.location.lon
+        })
+    </script>
+    </body>
+</html>
