@@ -11,7 +11,8 @@
         <p id="latlon"></p>
 
         <script>
-        fetch("https://api.tomorrow.io/v4/weather/realtime?location=akowonjo&apikey=voVLbodIcomHIuWq5gKCKmVjXdgSA7Ac")
+            const apiKey = "voVLbodIcomHIuWq5gKCKmVjXdgSA7Ac"
+        fetch(`https://api.tomorrow.io/v4/weather/realtime?location=akowonjo&apikey=${apiKey}`)
         .then(res => res.json())
         .then(data => {
             console.log(data)
